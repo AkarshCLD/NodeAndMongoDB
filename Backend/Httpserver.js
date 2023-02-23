@@ -14,6 +14,12 @@ const app = http.createServer((req, res) => {
         })
 
     }
+    else if(req.method=="POST" && req.url==="/login"){
+        req.on("data",(e)=>{
+            res.write(e)
+            res.end();
+        })
+    }
 
 })
 
