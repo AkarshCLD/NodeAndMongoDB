@@ -5,7 +5,6 @@ const bcrypt=require("bcrypt")
 const app = express()
 const saltrounds=10;
 app.use(express.json())
-
 app.use(express.urlencoded())
 app.use(cors())
 
@@ -22,11 +21,8 @@ app.post("/signup", (req, res) => {
         }
         else {
            console.log(encrypt)
-           
         }
     })
-
-
 })
 app.listen(7010, async () => {
     try {

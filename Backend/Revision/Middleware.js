@@ -1,11 +1,11 @@
 const express = require("express")
 const app = express();
 
-const middleware1=(req,res,next)=>{
+const middleware1 = (req, res, next) => {
     console.log("middleware one is running")
     next();
 }
-const middleware2=(req,res,next)=>{
+const middleware2 = (req, res, next) => {
     console.log("middleware two is running")
     next();
 }
