@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Footer from './Footer';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -25,7 +26,7 @@ const SignUp = () => {
     })
     const [store, setStore] = useState([])
     const handlechange = (e) => {
-        setData({...data,[e.target.name]: e.target.value })
+        setData({ ...data, [e.target.name]: e.target.value })
 
     }
 
@@ -40,9 +41,16 @@ const SignUp = () => {
             password: ""
         })
 
-
+        const { firstName, lastName, email, password } = data
+        if(firstName && lastName && email && password ){
+            axios.post("http://localhost:7010/signup", data)
+            .then(res=>console.log(res.data))
+        }
+        else{
+            alert(console.log("allert"))
+        }
     };
-            
+
 
     return (
         <>

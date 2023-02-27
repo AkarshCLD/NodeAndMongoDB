@@ -11,10 +11,10 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from './Footer';
 import { NavLink } from 'react-router-dom';
 
+import axios from 'axios';
 
 
 // const theme = createTheme();
@@ -29,7 +29,7 @@ const Login = () => {
     const handleChange = (e) => {
         setLogindata({ ...logindata, [e.target.name]: e.target.value })
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setStorelogin([{...logindata}])
        
@@ -38,10 +38,20 @@ const Login = () => {
             password: ""
         })
         // console.log(logindata)
+
+
+        const { email, password } = logindata
+        if( email && password ){
+            axios.post("http://localhost:7010/login", logindata)
+            .then(res=>console.log(res.data))
+        }
+        else{
+            alert(console.log("allert"))
+        }
         
     };
   
-    console.log(storelogin)
+
     return (
 
         <>
