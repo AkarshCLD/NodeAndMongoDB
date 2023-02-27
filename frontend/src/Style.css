@@ -1,0 +1,17 @@
+th,tr,td{
+    border: 2px solid black;
+}
+th{
+    background-color: rgba(128, 128, 128, 0.596);
+}
+.cells{
+    background-color: rgb(208, 228, 246);
+}
+.main_containr{
+    display: flex;
+    justify-content: center;
+}
+.main_containr:hover{
+box-shadow: 0px 0px 5px grey;
+
+}

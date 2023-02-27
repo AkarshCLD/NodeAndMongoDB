@@ -1,0 +1,16 @@
+.Login {
+    color: white;
+    text-decoration: none;
+}
+
+.btn_login {
+    border: none;
+    background-color: #1976d2;
+    color: white;
+}
+
+.footer {
+    color: white;
+    height: 40px;
+    background-color: #1976d2;
+}

@@ -23,7 +23,39 @@ Node.js is used for building server-side applications, meaning it allows develop
 **That's why In Node.js, most I/O operations are non-blocking, which allows the server to continue responding to other requests while the I/O operation is being performed. This is achieved through an event-driven, non-blocking I/O model, which allows Node.js to handle a large number of requests with low latency and high efficiency.**
 
 ---
+# what is REPL?
 
+    R-Read means it first read the input and then it converts the input into JS data structure , it is stored in to the memory. 
+
+    E-Eval means it after the read concepts it will move to eval part mens it is going to evaluate your input and give the desired output
+
+    P-Print means after evaluating the input and geeting the resuls is printed 
+
+    L-Loop means After the results get printed, it loops back to the input command. This loop continues its action until ctrl+c is pressed twice which terminates the loop thereby ending it. 
+
+---
+# what we can do with REPL
+
+- JS expression
+- use variables
+
+
+---
+# fs module
+
+    const fs=require("fs")
+
+    fs.writeFileSync("read.txt","hello this is another file added using FS module") // it is creating the read.txt file and if the file exits then it 
+    add only the msg / string
+    fs.appendFileSync("read.txt","  hello it is appendend without overwriting the preious data") // it is appending the msg without overwrite the 
+    previous data
+    const bufferdata=fs.readFileSync("read.txt")
+    fs.renameSync("read.txt","rename.txt")
+    console.log(bufferdata.toString())
+
+
+
+---
 # what is the difference between Node.js V/S Browser?
 
 **Node.js and web browsers are two different environments that use JavaScript as their primary programming language, but they have different purposes and capabilities.**
@@ -108,3 +140,6 @@ There are two types of require in nodejs:
         const lists=["akarsh","sp","shubham"]
         return lists;
     }
+
+---
+
