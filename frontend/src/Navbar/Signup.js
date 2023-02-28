@@ -3,7 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -11,13 +10,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Footer from './Footer';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import axios from 'axios';
 
-
-
-
 const SignUp = () => {
+
+    
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -44,11 +42,13 @@ const SignUp = () => {
         const { firstName, lastName, email, password } = data
         if(firstName && lastName && email && password ){
             axios.post("http://localhost:7010/signup", data)
-            .then(res=>console.log(res.data))
+            .then(res=>console.log(res.data,"this is a fetch data"))
+            
         }
         else{
             alert(console.log("allert"))
         }
+
     };
 
 

@@ -1,16 +1,20 @@
 import React from 'react'
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link, useHistory } from "react-router-dom"
 import Login from './Login'
 import Signup from "./Signup"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import "./Style.css"
+import Home from './Home';
 const Nav = () => {
+
+    const signupbtn = () => {
+
+    }
+
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
@@ -20,7 +24,7 @@ const Nav = () => {
                             All in One Store
                         </Typography>
                         <Link className='Login' to="/Login" ><button className='btn_login'> Login </button></Link>
-                        <Link className='Login' to="/Signup" ><button className='btn_login'>Signup</button></Link>
+                        <Link className='Login' to="/Signup" ><button className='btn_login' onClick={signupbtn} >Signup</button></Link>
                     </Toolbar>
                 </AppBar>
             </Box>
@@ -34,6 +38,7 @@ const Nav = () => {
 
 
             <Routes>
+                <Route path='/' element={<Home />} />
                 <Route path='/Signup' element={<Signup />} />
                 <Route path='/Login' element={<Login />} />
             </Routes>

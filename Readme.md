@@ -411,7 +411,7 @@ In Express, 404 responses are not the result of an error, so the error-handler m
 
 # Body-Parser?
 
-It is used when the data we accessing from the client side like a client fills the form then to use that request object we exposes it on req.body so in that time we need the body-parser. 
+It is used when the data we are accesing from the user side like a user fills the form then to use that request object we exposes it on req.body so in that time we need the body-parser. 
 
 This body-parser  parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request.
 
@@ -437,3 +437,69 @@ This body-parser  parses the JSON, buffer, string and URL encoded data submitted
     app.listen(4014,()=>{
         console.log("serevr is running")
     })
+
+---
+
+# Bcrypt  : 
+
+Bcrypt is a library to help you hash passwords. 
+
+Bcrypt changing your simple password into the some length character which is nothing your hash password.
+
+before it hashing the password bcrypt uses the salt so that unique random string that make the hash unresolvable.
+
+
+
+        suppose your password is [akarsh@12345] now what bcrypt will do it will it will apply some alogorith like ths salt will generate the unique random string or chararcter/ or symbols
+
+    now by the combination of that it will generate the hash pasword so that no one can encrypt it easily
+
+
+## Example: for the hashing the password 
+    
+
+    const express= require ("express")
+    const body_parser=require("body-parser")
+    const saltrounds=10;
+    const app=express();
+
+    app.use(body_parser.urlencoded({extended:false}))
+    app.use(body_parser.json)
+    app.post("/login",(req,res)=>{
+        const name=req.body.name;
+        const email=req.body.email;
+        const plainPassword=req.body.plainPassword;
+
+            
+    bcrypt.hash(plainPassword, saltrounds, (err, encryptpassword) => {
+        if (err) {
+            res.sendStatus(401);
+        }
+        else {
+            res.send(encryptpassword)
+        }
+     })
+    
+    })
+
+    app.listen(4014,()=>{
+        console.log("serevr is running")
+    })
+
+## Example: for the comparing the password  we use bcrypt.Compare();
+
+
+  
+    bcrypt.compare(enetred_password, hash)
+      .then(res => {
+        console.log(res) // if it is true when it matches with password
+      })
+      .catch(err => console.error(err.message))        
+     }
+
+---
+
+# JWT token:
+
+JWT stands fro the JSON Web Token.
+

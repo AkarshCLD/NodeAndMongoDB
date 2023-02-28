@@ -14,25 +14,27 @@ import Container from '@mui/material/Container';
 import Footer from './Footer';
 import { NavLink } from 'react-router-dom';
 
+// import { unstable_HistoryRouter } from 'react-router-dom';
 import axios from 'axios';
 
-
-// const theme = createTheme();
-
 const Login = () => {
+
+
+    // const history = unstable_HistoryRouter();
+    // console.log(history);
     const [logindata, setLogindata] = useState({
         email: "",
         password: ""
     })
-    const [storelogin,setStorelogin]=useState([])
+    const [storelogin, setStorelogin] = useState([]);
 
     const handleChange = (e) => {
-        setLogindata({ ...logindata, [e.target.name]: e.target.value })
+        setLogindata({ ...logindata, [e.target.name]: e.target.value });
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setStorelogin([{...logindata}])
-       
+        setStorelogin([{ ...logindata }])
+
         setLogindata({
             email: "",
             password: ""
@@ -41,16 +43,20 @@ const Login = () => {
 
 
         const { email, password } = logindata
-        if( email && password ){
+        if (email && password) {
             axios.post("http://localhost:7010/login", logindata)
-            .then(res=>console.log(res.data))
+                .then(res => { alert("Login succefully")})
+                // history.push("/Signup")
         }
-        else{
+        else {
             alert(console.log("allert"))
         }
-        
+
     };
-  
+    const handleloginbtn = () => {
+        // navigate("/")
+        
+    }
 
     return (
 
@@ -101,6 +107,7 @@ const Login = () => {
                             label="Remember me"
                         />
                         <Button
+                            onClick={handleloginbtn}
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -131,7 +138,7 @@ const Login = () => {
             <div>
                 <Footer sx={{ mt: 22, mb: 4, fontSize: 25 }} />
             </div>
-            
+
         </>
 
     );
