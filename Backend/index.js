@@ -19,7 +19,7 @@ app.post("/login", async (req, res) => {
         return
     }
     console.log("it is loged in")
-    res.send({ msg: "it is resolved" })
+    res.send({ msg: "user loged in successfull" })
 })
 app.post("/signup", async (req, res) => {
     const { firstName, lastName, email, password } = req.body
