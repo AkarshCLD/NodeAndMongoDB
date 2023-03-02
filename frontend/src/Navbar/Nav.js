@@ -1,5 +1,5 @@
-import React from 'react'
-import { Routes, Route, Link, useHistory } from "react-router-dom"
+import React, { useState } from 'react'
+import { Routes, Route, Link, useHistory,Switch } from "react-router-dom"
 import Login from './Login'
 import Signup from "./Signup"
 import AppBar from '@mui/material/AppBar';
@@ -10,10 +10,18 @@ import Typography from '@mui/material/Typography';
 import "./Style.css"
 import Home from './Home';
 const Nav = () => {
+    const [user, setLoginUser] = useState({
+   
+    });
 
-    const signupbtn = () => {
+    // const onLogin = ()=>{
+    //     setuser(true);
+    // }
 
-    }
+    // const onLogout = ()=>{
+    //     setuser(false);
+    // }
+//    useState
 
     return (
         <div>
@@ -24,7 +32,7 @@ const Nav = () => {
                             All in One Store
                         </Typography>
                         <Link className='Login' to="/Login" ><button className='btn_login'> Login </button></Link>
-                        <Link className='Login' to="/Signup" ><button className='btn_login' onClick={signupbtn} >Signup</button></Link>
+                        <Link className='Login' to="/Signup" ><button className='btn_login' >Signup</button></Link>
                     </Toolbar>
                 </AppBar>
             </Box>
@@ -38,9 +46,9 @@ const Nav = () => {
 
 
             <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/Signup' element={<Signup />} />
-                <Route path='/Login' element={<Login />} />
+                <Route exact path='/' element={user&& user._id?<Home setLoginUser={setLoginUser} />:<Login setLoginUser={setLoginUser}  />}/ >
+                <Route path='/Signup'element={<Signup />} />
+                <Route path='/Login' element={<Login setLoginUser={setLoginUser} />}/>
             </Routes>
 
 

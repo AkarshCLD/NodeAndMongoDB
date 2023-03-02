@@ -10,18 +10,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Footer from './Footer';
-import { NavLink} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+// import { Navigate } from "react-router-dom"
 import axios from 'axios';
 
 const SignUp = () => {
+    const navigate = useNavigate();
 
-    
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: ""
     })
+
     const [store, setStore] = useState([])
     const handlechange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
@@ -40,13 +42,17 @@ const SignUp = () => {
         })
 
         const { firstName, lastName, email, password } = data
-        if(firstName && lastName && email && password ){
+        if (firstName && lastName && email && password) {
             axios.post("http://localhost:7010/signup", data)
-            .then(res=>console.log(res.data,"this is a fetch data"))
-            
+            .then((res) => { alert(res.data.msg); navigate("/login"); })
+            // .then((res) => { alert(res.data.msg, "please login now"); })
+                .catch((res) => {
+                    alert(res.data.msg)
+                })
+
         }
-        else{
-            alert(console.log("allert"))
+        else {
+            alert("Invalid or does not exits")
         }
 
     };

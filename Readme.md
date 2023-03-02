@@ -1,5 +1,5 @@
 # --------------Node and MongoDB Notes--------------
-
+# Day1
 # \*\*Introduction to Node.js
 
 Node.js is an open-source, cross-platform runtime environment that allows developers to run JavaScript code outside of a web browser.
@@ -12,15 +12,16 @@ It is in between the client side and Database which take care of the request and
 
 ## Why we use NodeJS?
 
-Node.js is used for building server-side applications, meaning it allows developers to create web applications and services that can handle a large number of connections and requests. Because it uses a non-blocking, event-driven I/O model, it can handle a high volume of requests efficiently.This makes it particularly useful for building real-time applications, such as chat applications or online gaming platforms.
+Node.js is used for building server-side applications, meaning it allows developers to create web applications and services that can handle a large number of connections and requests. Because it uses a non-blocking This makes it particularly useful for building real-time applications, such as chat applications or online gaming platforms.
 
 ## Blocking and Non-Blocking:
 
-**A blocking operation** is one that prevents any other code from executing until it has completed. This means that if a piece of code is waiting for a blocking operation to complete, it cannot execute any other code during that time. In a web application, a blocking operation can cause the server to stop responding to other requests until the operation has finished. This can lead to slow performance and poor user experience.
+**A blocking operation** is one that prevents any other code from executing until it has completed.
+just like synch language. This means that if a piece of code is waiting for a blocking operation to complete, it cannot execute any other code during that time. In a web application, a blocking operation can cause the server to stop responding to other requests until the operation has finished. This can lead to slow performance and poor user experience.
 
 **A Non-blocking operation**does not stop other code from executing while it is being executed. Instead, when a non-blocking operation is started, the code continues to execute and does not wait for the operation to complete. When the operation has completed, the callback function associated with the operation is called, and the result of the operation can be handled by the code.
 
-**That's why In Node.js, most I/O operations are non-blocking, which allows the server to continue responding to other requests while the I/O operation is being performed. This is achieved through an event-driven, non-blocking I/O model, which allows Node.js to handle a large number of requests with low latency and high efficiency.**
+
 
 ---
 # what is REPL?
@@ -84,7 +85,7 @@ It is designed for building server-side applications and services, such as web s
     })
 
 ---
-
+# Day2
 # What is the module and module.export?
 
 A module in Node.js is usually defined in a separate file and can contain variables, functions, or objects. To make a module available for use in other parts of an application, it needs to be exported using the module.exports
@@ -143,6 +144,8 @@ There are two types of require in nodejs:
 
 ---
 
+
+# Day3:
 # Different types of http requests
 
 - **GET**: The GET request is used to retrieve data from a server. It can be used to retrieve a specific resource, such as a webpage or an image.
@@ -190,14 +193,13 @@ There are two types of require in nodejs:
 
 - Express is a framework built on top of Node.
 - Express is a tool that makes it easier to build web applications using Node.js.
-- It provides a set of features and tools for handling HTTP requests, routing, and middleware. 
-- With Express, you can create web applications that are flexible and scalable, and it supports different template engines for rendering dynamic HTML pages
+- It provides for handling HTTP requests, routing, and middleware. 
 
 - Express helps you manage everything, from routes to handling requests .
 
 |HTTP|Express|
 |:--|:---|
-| It is an in-build module which is pre-installed along with NodeJS. It is used to create server and set up connections. Using this connection, data sending and receiving can be done as long as connections use a hypertext transfer protocol.|Express as a whole is known as a framework, not just as a module. It gives you an API, submodules, functions, and methodology and conventions for quickly and easily typing together all the components necessary to put up a modern, functional web server with all the conveniences necessary for that (static asset hosting, templating, handling CSRF, CORS POST data handling.|
+| It is an in-build module which is pre-installed along with NodeJS. It is used to create server and set up connections. Using this connection, data sending and receiving can be done as long as connections use a hypertext transfer protocol.|Express as a whole is known as a framework, not just as a module. It gives you an API,  functional web server with all the conveniences necessary for that (static asset hosting, templating, CORS POST data handling.|
 |HTTP is an independent module.|Express is made on top of the HTTP module.|
 ## Example using Express  of get and post method
 
@@ -228,7 +230,7 @@ There are two types of require in nodejs:
         })
 
 ---
-
+# Day4:
 # Express Routing 
 
 **Routing** defines the way in which the client requests are handled by the application endpoints.
@@ -295,7 +297,9 @@ There are two types of require in nodejs:
 
 
 **middleware is nothing but a function that runs even before the call goes to the API for which it is meant to be .**
-- middleware is in between the server and the client that sits in the middle and intercepts incoming requests, processes them, and then passes them on to the next thing.
+
+
+- middleware is in between the server and the client that sits in the middle and intercepts incoming requests, processes them, and then passes them on to the next thing if there is nested middleware.
 
 - in this it accepts 3 parameter like:(req,res,next)
 
@@ -303,7 +307,6 @@ There are two types of require in nodejs:
 
 - **next()** is going to forword to next cycle if the autherization is succesfully completed if there is an error then it will not move forword and it will not hit the api it will cancel the request at that time only.
 
--  The argument, next, is a function that tells Express.js to continue on to the following middleware you have configured for your application.
 
 ## why we need the middleware?
 
@@ -360,9 +363,9 @@ There are two types of require in nodejs:
 
 **CORS stands for Cross-Origin Resource Sharing**
 
-CORS is a mechanism to allow or restrict requested resources on a web server depend on where the HTTP request was initiated.
+CORS is a mechanism to allow requested resources on a web server depend on where the HTTP request was initiated.
 
- It is used to secure a certain web server from access by other domain like you want to connect use the backend port into your frontend port then we use the cors which is sharing the data. 
+ It is used to secure a certain web server from access by other domain like you want to connect  the backend port into your frontend port then we use the cors which is sharing the data. 
 
 like:
 
@@ -416,6 +419,7 @@ It is used when the data we are accesing from the user side like a user fills th
 This body-parser  parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request.
 
 
+
 # Example:
 
     const express= require ("express")
@@ -439,7 +443,7 @@ This body-parser  parses the JSON, buffer, string and URL encoded data submitted
     })
 
 ---
-
+# Day5 
 # Bcrypt  : 
 
 Bcrypt is a library to help you hash passwords. 
@@ -499,7 +503,90 @@ before it hashing the password bcrypt uses the salt so that unique random string
 
 ---
 
+# Authentication and Authorization:
+
+These both are used for the security purpose the differnece between them are as:
+
+**Authentication** means if the user provided some credentials like user name and password and sending to the server now the server will check that credentials in the database that it is existing user or not if exits then password is correct or not.
+
+**Authorization**means the server checks the user who logged is having the access for the specific datya or not or which api he is havving the access.
+
+
+
+# Project
+ **Backend**: https://github.com/akarsh-gupta007/NodeAndMongoDB/tree/master/Backend
+
+**Frontend**:  https://github.com/akarsh-gupta007/NodeAndMongoDB/tree/master/frontend"
+
+# Day6
+
 # JWT token:
 
-JWT stands fro the JSON Web Token.
+JWT stands fro the JSON Web Token.To achive the authentication in the API we use JWT tokens.
+
+Where ever we need to authenticate the application we uses JWT.
+
+it is used where ever we need to authenticate the user for hitting the api 
+
+Suppose the user logged into the facebook accounts then only user can hit the api like post or frend request , etc. now for every api he needs to authenticate again and  again then what we can do with the help of the JWT we can generate the token and send it back.
+
+Now the user dont have to authenticate again and again user can access the any api with that token for which he is having the access of the resoures.
+
+Now how this token works:
+once the User and Password is correct or registerd then it will generate the token
+
+now you can use the token instead of credential now how it will check that which user profile is this to whome i have to post or send the friend request now the token can verify from the backend that it is correct then only he can hit the api. 
+# example of JWT:
+
+
+        const ex = require("express")
+        const jwt = require("jsonwebtoken")
+        const app = ex()
+        const secretkey = "akaka"
+
+        app.post("/logins", (req, res) => {
+            const user = {
+                id: 1,
+                username: "akarsh",
+                email: "ak@gmail.com"
+            }
+            jwt.sign({ user }, secretkey, { expiresIn: "300s" }, (err, token) => {
+                res.json({
+                    token
+                })
+            })
+        })
+        app.post("/profile", verifytoken, (req, res) => {
+            jwt.verify(req.token, secretkey, (err, authdata) => {
+                if (err) {
+                    res.send({
+                        result: "token invalid"
+                    })
+                }
+                else {
+                    res.json({
+                        authdata
+                    })
+                }
+            })
+            console.log("profile")
+        })
+
+        function verifytoken(req, res, next) {
+            const berare = req.headers["authorization"];
+            if (typeof berare !== undefined) {
+                const token = berare.split(" ")[1]
+                req.token = token;
+                next();
+            } else {
+                res.send({
+                    result: "token is not valid"
+                })
+            }
+        }
+        app.listen(8800, () => {
+            console.log(" server is running")
+        })
+
+---
 

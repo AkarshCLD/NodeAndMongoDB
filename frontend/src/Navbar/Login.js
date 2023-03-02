@@ -12,14 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Footer from './Footer';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
 // import { unstable_HistoryRouter } from 'react-router-dom';
 import axios from 'axios';
+const Login = ({setLoginUser}) => {
 
-const Login = () => {
-
-
+    const navigate = useNavigate();
     // const history = unstable_HistoryRouter();
     // console.log(history);
     const [logindata, setLogindata] = useState({
@@ -45,22 +43,21 @@ const Login = () => {
         const { email, password } = logindata
         if (email && password) {
             axios.post("http://localhost:7010/login", logindata)
-                .then(res => { alert("Login succefully")})
+            .then((res) => { alert(res.data.msg, "this is a fetch data");  setLoginUser(res.data.user); navigate("/"); })
                 // history.push("/Signup")
+
         }
         else {
             alert(console.log("allert"))
         }
 
     };
-    const handleloginbtn = () => {
-        // navigate("/")
-        
-    }
+
 
     return (
 
         <>
+        {/* {console.log(user)} */}
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -107,7 +104,7 @@ const Login = () => {
                             label="Remember me"
                         />
                         <Button
-                            onClick={handleloginbtn}
+                           
                             type="submit"
                             fullWidth
                             variant="contained"

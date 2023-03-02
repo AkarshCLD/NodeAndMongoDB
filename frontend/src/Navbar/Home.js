@@ -12,7 +12,11 @@ import { Container } from '@mui/system';
 
 
 
-const Home = () => {
+const Home = ({setLoginUser}) => {
+
+  const handlebtn=()=>{
+    setLoginUser({})
+  }
   return (
 
 
@@ -36,7 +40,8 @@ const Home = () => {
           Welcome
         </Typography>
         <Button
-          type="submit"
+        onClick={handlebtn}
+        
           fullWidth
           variant="contained"
           sx={{ mt: 6, mb: 2 }}
