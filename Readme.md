@@ -590,3 +590,67 @@ now you can use the token instead of credential now how it will check that which
 
 ---
 
+# Socket 
+
+## what is Socket and why we use it?
+
+
+- socket.io is basically used for the bidirectional communication channel between the client side and the server side.and it is used in various application like Chat App , Game App, etc.
+
+
+
+- A socket is like a virtual phone line that two computer programs can use to talk to each other over the internet. It enables communication by creating a connection between the programs using a specific protocol, such as **TCP** 
+
+
+- **TCP stands for Transmission Control Protocol**  means a communications standard that enables application programs and computing devices to exchange messages over the network
+
+# why we use it?
+
+- previously what we are doing the API calls from the client side and then the server send the response back to the client but here the communication is happening from the client side only not from the server side so if let say server also wants to communicate with client then we can not do by creating the restful API. 
+
+- so to make the communication between them in the vice versa we use the socket programming.
+
+## So what is the Difference between the HTTP And Socket
+
+- **http** is a  unidirectional or one way communication where client sends request and server send response to the client. 
+
+- lets see the example of the http server--->when the client send the request , corresponding to that request server send the response back to it and after the sending the response the server connection get stoped or cancelled.
+
+
+- Where as **Socket** make the two way communication or Bidirectional channel between the client side and the server side.
+
+- lets see the example suppose whenever we our start the connection between client server the client-server make the bond and then decide to create a new connection and now this new connection will run till that until unless the client is not stoping the connection
+
+Example-  
+Server.js
+
+
+    const express= require("express")
+
+    const socket require("socket.io")
+
+    const app= express()
+
+    const io =socket(server,{
+        cors:{
+            origin:"*"
+        }
+    })
+
+    io.on("connection",(socket)=>{
+        console.log("socket is connected")
+    })
+    const server=app.listen(4040,()=>{
+        console.log("server is started)
+    })
+
+## Client.js
+
+    const io = require("socket.io-client")
+
+    const socketClient = io("http://localhost:6000/")
+
+
+      socketClient.on("connect", () => {
+      console.log("socket client is connected")
+      })
