@@ -406,7 +406,9 @@ The error level middleware takes four arguments: err, req, res, and next.
 
 **CORS stands for Cross-Origin Resource Sharing**
 
-CORS is a mechanism to allow requested resources on a web server depend on where the HTTP request was initiated.
+CORS is a mechanism to allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
+
+For example, if you had your web API on one server and your web app on another you could configure CORS in your Web API to allow your web app to make calls to your web API.
 
 It is used to secure a certain web server from access by other domain like you want to connect the backend port into your frontend port then we use the cors which is sharing the data.
 
@@ -456,11 +458,12 @@ like:
 
 Body Parser is a middleware of Node JS used to handle HTTP POST request. Body Parser can parse string based client request body into JavaScript Object which we can use in our application.
 
+
 It is used when the data we are accesing from the user side like a user fills the form then to use that request object we exposes it on req.body so in that time we need the body-parser.
 
 This body-parser parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request.
 
-if the the express is installed in the latest version then we can use express.json()
+if we are not using body-parser then it will lose the data, and request. body field will be empty or undifined. but if we are using the latest version of the express is then we can avoid and we can use insted  express.json() instead of that.
 
 # Example:
 
@@ -495,6 +498,10 @@ Bcrypt is a library to help you hash passwords.
 Bcrypt changing your simple password into the some length character which is nothing your hash password.
 
 before it hashing the password bcrypt uses the salt so that unique random string that make the hash unresolvable.
+
+to generate the salt we need the salt rounds and  With "salt round" they actually mean the cost factor. The cost factor controls how much time is needed to calculate a single BCrypt hash. The higher the cost factor, the more hashing rounds are done. 
+
+
 
         suppose your password is [akarsh@12345] now what bcrypt will do it will it will apply some alogorith like ths salt will generate the unique random string or chararcter/ or symbols
 
@@ -547,7 +554,7 @@ These both are used for the security purpose the differnece between them are as:
 
 **Authentication** means if the user provided some credentials like user name and password and sending to the server now the server will check that credentials in the database that it is existing user or not if exits then password is correct or not.
 
-**Authorization**means the server checks the user who logged is having the access for the specific datya or not or which api he is havving the access.
+**Authorization** is the process of verifying who a user is, while authorization is the process of verifying what they have access to. Initially we will just check token in the header of request for restricted routes, then allow or deny request.
 
 
 
