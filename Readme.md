@@ -9,7 +9,7 @@
 
 # Project:3 : Inshort news application
 
-## link:  https://majestic-speculoos-45912e.netlify.app/
+## link:  https://master--dancing-sunshine-873da8.netlify.app/
 
 # Project:4 : Chat Application Broadcast
 
