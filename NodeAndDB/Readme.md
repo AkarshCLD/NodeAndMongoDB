@@ -696,3 +696,389 @@ Server.js
       socketClient.on("connect", () => {
       console.log("socket client is connected")
       })
+
+## example go to the link : https://github.com/akarsh-gupta007/chatapp
+
+---
+
+# Database
+
+**A database** is an organized collection of structured or non structured information, or data to stored in a computer system. A database is usually controlled by a DBMS.
+
+DBMS stands for the database management system.
+
+Databases are widely divided into two major types as:-
+
+Relational or Sequence Databases or SQL database.[SQL: Structured Quesry Language]
+
+Non-relational or Non-sequence databases or No SQL databases.
+
+Before moving a head let see about the difference between the sql and no-sql.
+
+They both are used to connect the database but the differnce is that in the SQL we are storing our data/information in the sequence wise where we store the data inside the table row and column.
+
+and with each row we are representing a unique record and each column representing a specific data field.
+
+and the NoSQL was creadted with the large data collection in the database and they are versatile because they can store the data/information in the form of the unstructured manner or semi-structured manner.It is not limited to storing the data in the tables.
+
+Where as SQL supports the predefined schemas,making the storage of the data to structured type only. BUT NoSQL supports the dynamic schemas to store the different different forms of data.
+
+# Mongo Shell CRUD operation:
+
+CRUD operation stands for the create Read Update and Delete
+
+- If the specified collection doesn't exits then the create operation will create the collection first and the create operation will target the a single collection not a multiple collection.
+
+- there are 2 different methods to create the operation: 1: insertOne(), 2:insertMany().
+
+
+    db.collection.insertOne()// in the collection we have to give the collection name where we are going to perform the CRUD operation then after that you can put the methods
+
+## insertOne()
+
+    lets employeelist is the collection name
+
+    db.employeelist.insertOne({  // insert in the form of object
+        name:"akarsh gupta",
+        age:25,
+        department:"TCE"
+    })
+
+if it is created then the function will return the object where we will get 2 things fist one is acknowledged is true means it is successfull added and another one is object id as the each data should have the unique ID.
+
+## insertMany()
+
+    lets say we have to insert many data in one go so we
+    have to use the insertMany method.
+
+    db.employeelist.insertMany([{
+        name:"akarsh gupta",
+        age:25,
+        department:"TCE"
+    },
+    {
+        name:"Anwaar",
+        age:25,
+        department:"TCE"
+    },
+    {
+        name:"Shubham",
+        age:25,
+        department:"TCE"
+    }])
+
+# Read Operations
+
+To get the all the document that are stored in the collection we will use the **find()** method which will give the all the stored data with the each unique ""\_id"".
+
+    db.mydb.find()
+
+
+    result will display as below:
+    { "_id" : ObjectId("64097b191ee8f93b08be4509"), "name" : "data" }
+    { "_id" : ObjectId("64097b431ee8f93b08be450a"), "name" : "SP" }
+     { "_id" : ObjectId("64097b651ee8f93b08be450b"), "name" : "sgg" }
+     { "_id" : ObjectId("64097bea1ee8f93b08be450c"), "name" : "akarsh" }
+     { "_id" : ObjectId("64097bea1ee8f93b08be450d"), "name" : "sp" }
+      { "_id" : ObjectId("64097bea1ee8f93b08be450e"), "name" : "shubham" }
+
+\*\*if we want to filter out the perticular record the inside the find() method give the key value pair in JSON format.
+
+     db.mydb.find({"name":"shubham"}) // it will give the result which matches
+
+      { "_id" : ObjectId("64097bea1ee8f93b08be450e"), "name" : "shubham" }
+
+# findOne()
+
+this method will give the data which will specify the search criteria if the multiple data satisfying the the search criteria then it will only return the first document of the search it will work as find methoid in the arrays.
+
+If there is no data available to that search critera then it will simple return the null
+
+db.mydb.find({"name":"shubham"})
+
+# Update Operation:
+
+In this operation operates only on a single collection and an update operation takes filters and criteria to select the documents we want to update.
+
+**we have to make sure that whatever we are updatng the data it will permanntly update the record and it cant be undo back. it is also in case of the delete functionality.**
+
+For MongoDB CRUD, there are three different methods of updating documents:
+
+- db.collection.updateOne()
+- db.collection.updateMany()
+- db.collection.replaceOne()
+
+## updateOne():
+
+in this we can update the existing record and we can change the one data with an update operation. in this we need to give 2 arguments
+
+- update filter and
+- update action.
+
+The update filter defines which record we want to update, and the update action defines how to update those record.
+
+    db.collection.updateOne({update filter item}, {$set:{update action item}})
+
+it will return the 3 things acknowledge, matchCount,and modifiedCount
+
+        db.mydb.updateOne({name:"shubham"},{$set:{name:"nitin"}})
+
+
+        { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+
+        db.mydb.find()
+        { "_id" : ObjectId("64097b191ee8f93b08be4509"), "name" : "data" }
+        { "_id" : ObjectId("64097b431ee8f93b08be450a"), "name" : "SP" }
+        { "_id" : ObjectId("64097b651ee8f93b08be450b"), "name" : "sgg" }
+        { "_id" : ObjectId("64097bea1ee8f93b08be450c"), "name" : "akarsh" }
+        { "_id" : ObjectId("64097bea1ee8f93b08be450d"), "name" : "sp" }
+        { "_id" : ObjectId("64097bea1ee8f93b08be450e"), "name" : "nitin" }
+
+## updateMany():
+
+updateMany() allows us to update multiple items by passing in a list of items, just as we did when inserting multiple items. This update operation uses the same syntax for updating a single document.
+
+     db.mydb.updateMany({name:"nitin"},{$set:{age:"258"}})
+     { "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+     > db.mydb.find()
+     { "_id" : ObjectId("64097b191ee8f93b08be4509"), "name" : "data" }
+     { "_id" : ObjectId("64097b431ee8f93b08be450a"), "name" : "SP" }
+     { "_id" : ObjectId("64097b651ee8f93b08be450b"), "name" : "nitin", "age" : "258" }
+     { "_id" : ObjectId("64097bea1ee8f93b08be450c"), "name" : "akarsh" }
+     { "_id" : ObjectId("64097bea1ee8f93b08be450d"), "name" : "nitin", "age" : "258" }
+     { "_id" : ObjectId("64097bea1ee8f93b08be450e"), "name" : "nitin", "age" : "258" }
+     >
+
+## replaceOne():
+
+The replaceOne() method is used to replace a single record in the specified collection. replaceOne() replaces the entire record, meaning fields in the old record not contained in the new will be lost.
+
+     db.mydb.replaceOne({name:"nitin"},{name:"sp"})
+        { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+        > db.mydb.find()
+        { "_id" : ObjectId("64097b191ee8f93b08be4509"), "name" : "data" }
+        { "_id" : ObjectId("64097b431ee8f93b08be450a"), "name" : "SP" }
+        { "_id" : ObjectId("64097b651ee8f93b08be450b"), "name" : "sp" }
+        { "_id" : ObjectId("64097bea1ee8f93b08be450c"), "name" : "akarsh" }
+        { "_id" : ObjectId("64097bea1ee8f93b08be450d"), "name" : "nitin", "age" : "258" }
+        { "_id" : ObjectId("64097bea1ee8f93b08be450e"), "name" : "nitin", "age" : "258" }
+
+---
+
+# Delete Operations:
+
+Delete operations operate on a single collection, like update and if once it is deleted then it can't be backed up. we can provide delete operations with filters and criteria in order to specify which record we would like to delete from a collection.
+
+This operation also has two different methods of deleting records from a collection:
+
+- db.collection.deleteOne()
+- db.collection.deleteMany()
+
+## deleteOne():
+
+deleteOne() is used to remove a recors from a specified collection on the database. A filter criteria is used to specify the item to delete.
+
+It will delete the record which will matches e=with the seach criteria and it will delete the only one record if lets say there are three record with the same search criteria then it will delete the first one only
+
+    db.RecordsDB.deleteOne({name:"sp"})
+
+    { "acknowledged" : true, "deletedCount" : 1 }
+
+## deleteMany():
+
+deletemany() method will delete the multiple record from the collection within in a single opration whatever the record will match with the search criteria then it will delete all the existing record for that filter item.
+
+        db.RecordsDB.deleteOne({name:"sp"})
+
+        { "acknowledged" : true, "deletedCount" : 3 }
+
+---
+
+# Mongo client CRUD operation:
+
+The theoritical concet is same the example will be shown in following link
+
+for the CRUD opearaion
+
+Link: https://github.com/akarsh-gupta007/Backend_CRUD/blob/master/Backend/router/userdetails.js
+
+---
+
+# Mongoose:
+
+As we have covered the basic queries in the above using mongoDB shell.
+
+But we will mostly be writing our queries in our server's JavaScript code using Mongoose. We will be covering basic CRUD (Create, Read, Update, Delete) operations.
+
+    |Http methods|CRUD operation|
+    |:-----------|:-------------|
+    |GET|Read|
+    |POST|Create|
+    |PUT/PATCH|Update|
+    |DELETE|Delete|
+
+# Connection using mongoose:
+
+    const mongoose=require("mongoose")
+    mongoose.set("strictQuery",true)
+    const conncetion=mogoose.connect("URL of the mongoDB compass or mongoDB clud server url in a string")
+
+    module.exports=connection;
+
+then after that we have to make the schema meas Schemas commonly use visual representations to communicate the architecture of the database.
+
+### making the schema validation
+
+     const mongoose = require("mongoose")
+     const userSchema =  mongoose.Schema({
+     firstName: {
+        type: String,
+        lowercase:true,
+        required: true,
+        trim:true,
+        minlength:5,
+        maxlength:30
+     },
+     lastName: {
+        type: String,
+        lowercase:true,
+        required: true,
+        trim:true,
+        minlength:5,
+        maxlength:30
+      },
+     email: {
+        type: String,
+        Slowercase:true,
+        required: true,
+        trim:true
+     },
+     password: {
+        type: String,
+        required: true
+    },
+    })
+    const signupModel = mongoose.model("userSchema", userSchema);
+    module.exports = signupModel;
+
+# In the READ operation in Mongoose:
+
+Mongoose gives the 3 basic ways to get the data from the database:
+
+- .find()
+- .findOne()
+- .findById()
+
+## .find():
+
+Syntax: [.find([query], [callback])]
+
+        router.get('/getalldetails', async (req, res) => {
+         try {
+        const data = await projectmodel.find().sort({ "ranking": 1 });
+          res.json(data)
+            }
+             catch (err) {
+               console.log(err)
+            }
+           })
+
+In the above example the projectmodel is the schema of the collection name in the database.
+
+.find() finds all instances in the database that match the query we pass in.
+// It returns an array, even if there is only one item in the array.
+
+If query is passed into .find(), filters by the query parameters then it will return that result only instead of giving all the records.
+
+if no query is passed then only it will return all the results from the database.
+
+## .findOne()
+
+Finds one object from the database. If your query matches more than one item in the database, it still only returns the first one it finds.
+
+       const findone= projectmodel.findOne({color: "white", name: "Dr. Miffles", age: 1},
+         (err, data) => {
+        if (err) return res.send(err)
+        return res.send(data)
+    }
+     );
+
+## findById():
+
+Finds a single object in the database by the provided id.
+
+           const findbyid= projectmodel.findOne(req.params.id, (err, data) => {
+        if (err) return res.send(err)
+        return res.send(data)
+    }
+     );
+
+---
+
+# Create operation in Mongoose:
+
+This is the way we can create new items in the database. This will commonly be used from an HTTP POST request or express POST request.
+
+        router.post('/api', async (req, res) => {
+         const { name, tech, email, ranking } = req.body;
+        const newdata = new projectmodel(req.body)
+        console.log(name, tech, email, ranking)
+        const exituser = await projectmodel.findOne({ email:email
+           }).exec();
+        try {
+        if (exituser) {
+            res.send({msg:"the user exits"})
+            console.log("user exits")
+        }
+        else {
+            const a1 = await newdata.save()
+            res.json(a1)
+            res.send({msg:"data is added successfully"})
+            console.log("data is added")
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+    })
+
+---
+
+# Update using Mongoose:
+
+with the update using mongoose we use put/patch http method for updating.
+
+Put method is used for the update the whole items in the database.if the item is not present then it will create the new coleection item in the database.
+
+Patch method only update the item not creating the new item in the collection.
+
+        app.patch('/update/:id', async (req, res) => {
+         try {
+        const updatedata = await projectmodel.findByIdAndUpdate(req.params.id, req.body);
+        const a1 = await updatedata.save()
+        res.json(a1)
+            }
+           catch (err) {
+                console.log(err)
+      }
+     })
+
+---
+
+# Delete using Mongoose
+
+        app.delete('/delete/:id', async (req, res) => {
+         try {
+        const deletedata = await projectmodel.findByIdAndRemove(req.params.id);
+        const a1 = await deletedata.save({});
+        res.json(a1)
+        console.log("deleted")
+            }
+     catch (err) {
+        console.log(err)
+      }
+     })
+
+---
+
