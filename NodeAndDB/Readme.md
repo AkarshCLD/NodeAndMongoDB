@@ -179,13 +179,13 @@ The HTTP status code 403 implies that the request is understood by the server, b
 
 # Different types of http requests
 
-- **GET**: The GET request is used to retrieve data from a server. It can be used to retrieve a specific resource, such as a webpage or an image.
+- **GET**: The GET request is used to retrieve data from a database. It can be used to retrieve a specific resource, such as a webpage or an image.
 
-- **POST**: The POST request is used to submit data to the server, typically for the purpose of creating or updating a resource. For example, a user might submit a form with data to create a new account on a website.
+- **POST**: The POST request is used to submit data to the database, typically for the purpose of creating or updating a resource. For example, a user might submit a form with data to create a new account on a website.
 
-- **PUT**: The PUT request is used to update an existing resource on the server. It replaces the entire resource with the new data.
+- **PUT**: The PUT request is used to update an existing resource on the database. It replaces the entire resource with the new data.
 
-- **DELETE**: The DELETE request is used to delete a resource from the server.
+- **DELETE**: The DELETE request is used to delete a resource from the database.
 
 - **GET and POST methods are mostly used**
 
